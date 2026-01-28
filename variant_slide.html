@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umeå Energi Banner - Slide</title>
+    <style>
+        body { margin: 0; padding: 70px 0; display: flex; flex-direction: column; align-items: center; gap: 40px; background-color: #f0f0f0; font-family: Arial, sans-serif; }
+        .banner-980 { width: 980px; height: 240px; background-color: #012d2f; overflow: hidden; display: flex; position: relative; cursor: pointer; text-decoration: none; }
+        .banner-320 { width: 320px; height: 320px; background-color: #012d2f; overflow: hidden; position: relative; cursor: pointer; text-decoration: none; }
+        
+        /* Navigeringsmeny */
+        .nav-menu { position: fixed; top: 20px; left: 20px; display: flex; gap: 10px; z-index: 1000; }
+        .nav-menu a { padding: 8px 15px; background: #004042; color: white; text-decoration: none; border-radius: 5px; font-size: 14px; border: 1px solid #012d2f; }
+        .nav-menu a:hover { background: #012d2f; }
+        .nav-menu a.active { background: #ffdf5e; color: #012d2f; font-weight: bold; }
+
+        /* 980 Styles */
+        .left-side { width: 370px; height: 100%; background-color: #012d2f; z-index: 10; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+        .logo-980 { width: 180px; }
+        .rubrik-980 { width: 300px; margin-top: 20px; }
+        .right-side { flex: 1; height: 100%; background-color: #004042; position: relative; }
+        .stage-980 { position: absolute; top: 0; left: 0; width: 100%; height: 240px; overflow: hidden; }
+        .item-980 { position: absolute; left: 120%; top: 40px; transform: translateX(-50%); width: auto; height: 80px; opacity: 0; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .item-980.active { left: 50%; opacity: 1; }
+        .item-980.exit { left: -20%; opacity: 0; }
+        .cta-980 { width: 250px; position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 20; }
+
+        /* 320 Styles */
+        .logo-320 { width: 140px; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 20; }
+        .stage-320 { width: 100%; height: 100%; position: relative; overflow: hidden; }
+        .item-320 { position: absolute; width: 100%; height: 100%; left: 120%; top: 0; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .item-320.active { left: 0; opacity: 1; }
+        .item-320.exit { left: -100%; opacity: 0; }
+        
+        .rubrik-wrapper-320 { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 40px; box-sizing: border-box; }
+        .rubrik-320 { width: 180px; }
+        .product-img-320 { width: auto; height: 120px; margin-top: 40px; }
+        
+        .cta-320 { width: 220px; position: absolute; bottom: 65px; left: 50%; transform: translateX(-50%); z-index: 15; }
+        .shield-320 { position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; background-color: #012d2f; z-index: 12; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-menu">
+        <a href="index.html">Original</a>
+        <a href="variant_push.html">Push</a>
+        <a href="variant_slide.html" class="active">Slide</a>
+        <a href="variant_reveal.html">Reveal</a>
+        <a href="variant_pop.html">Pop</a>
+    </div>
+
+    <!-- 980x240 Variant -->
+    <a href="https://www.umeaenergi.se/elavtal" target="_blank" class="banner-980">
+        <div class="left-side">
+            <img src="rubrik.png" alt="" class="rubrik-980">
+            <img src="logo.png" alt="" class="logo-980">
+        </div>
+        <div class="right-side">
+            <div class="stage-980">
+                <img src="manad.png" alt="" class="item-980" id="item-980-0">
+                <img src="kvart.png" alt="" class="item-980" id="item-980-1">
+                <img src="fast.png" alt="" class="item-980" id="item-980-2">
+            </div>
+            <img src="cta.png" alt="" class="cta-980">
+        </div>
+    </a>
+
+    <!-- 320x320 Variant -->
+    <a href="https://www.umeaenergi.se/elavtal" target="_blank" class="banner-320">
+        <div class="stage-320">
+            <!-- Start/Slut-skärm -->
+            <div class="item-320" id="item-320-start">
+                <div class="rubrik-wrapper-320">
+                    <img src="rubrik_320.png" alt="" class="rubrik-320">
+                </div>
+            </div>
+            <!-- Produkter -->
+            <div class="item-320">
+                <img src="manad_320.png" alt="" class="product-img-320">
+            </div>
+            <div class="item-320">
+                <img src="kvart_320.png" alt="" class="product-img-320">
+            </div>
+            <div class="item-320">
+                <img src="fast_320.png" alt="" class="product-img-320">
+            </div>
+        </div>
+        
+        <div class="shield-320"></div>
+        <img src="cta_320.png" alt="" class="cta-320">
+        <img src="logo_320.png" alt="" class="logo-320">
+    </a>
+
+    <script>
+        const items980 = document.querySelectorAll('.item-980');
+        let index980 = 0;
+        function rotate980() {
+            const current = items980[index980];
+            current.classList.remove('exit');
+            current.classList.add('active');
+            setTimeout(() => {
+                current.classList.remove('active');
+                current.classList.add('exit');
+                index980 = (index980 + 1) % items980.length;
+                setTimeout(rotate980, 100);
+            }, 1500);
+        }
+
+        const items320 = document.querySelectorAll('.item-320');
+        let index320 = 0;
+        function rotate320() {
+            const current = items320[index320];
+            
+            const cta = document.querySelector('.cta-320');
+            const shield = document.querySelector('.shield-320');
+            if (index320 === 0) {
+                cta.style.opacity = '0';
+                shield.style.opacity = '0';
+            } else {
+                cta.style.opacity = '1';
+                shield.style.opacity = '1';
+            }
+
+            current.classList.remove('exit');
+            current.classList.add('active');
+            
+            setTimeout(() => {
+                current.classList.remove('active');
+                current.classList.add('exit');
+                index320 = (index320 + 1) % items320.length;
+                setTimeout(rotate320, 100);
+            }, 1500);
+        }
+
+        window.onload = () => {
+            rotate980();
+            rotate320();
+        };
+    </script>
+</body>
+</html>
