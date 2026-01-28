@@ -10,8 +10,38 @@
         .banner-320 { width: 320px; height: 320px; background-color: #012d2f; overflow: hidden; position: relative; cursor: pointer; text-decoration: none; }
         
         /* Navigeringsmeny */
-        .nav-menu { position: fixed; top: 20px; left: 20px; display: flex; gap: 10px; z-index: 1000; }
-        .nav-menu a { padding: 8px 15px; background: #004042; color: white; text-decoration: none; border-radius: 5px; font-size: 14px; border: 1px solid #012d2f; }
+        .nav-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-label {
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            color: #012d2f;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-menu a {
+            padding: 8px 15px;
+            background: #004042;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            border: 1px solid #012d2f;
+        }
         .nav-menu a:hover { background: #012d2f; }
         .nav-menu a.active { background: #ffdf5e; color: #012d2f; font-weight: bold; }
 
@@ -44,11 +74,14 @@
 <body>
 
     <div class="nav-menu">
-        <a href="index.html">Original</a>
-        <a href="variant_push.html">Push</a>
-        <a href="variant_slide.html">Slide</a>
-        <a href="variant_reveal.html">Reveal</a>
-        <a href="variant_pop.html" class="active">Pop</a>
+        <span class="nav-label">Testa annan animering:</span>
+        <div class="nav-buttons">
+            <a href="index.html">Bounce</a>
+            <a href="variant_push.html">Push</a>
+            <a href="variant_slide.html">Slide</a>
+            <a href="variant_reveal.html">Reveal</a>
+            <a href="variant_pop.html" class="active">Pop</a>
+        </div>
     </div>
 
     <!-- 980x240 Variant -->
