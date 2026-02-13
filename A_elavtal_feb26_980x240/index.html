@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+	<title>Tänker du på ditt elavtal? Hitta ett som passar dig</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			margin:0;
+			height:100%;
+		}
+	</style>
+	<!-- copy these lines to your document head: -->
+
+	<meta name="viewport" content="user-scalable=yes, width=320" />
+	<style>
+@font-face {
+  font-family: 'Borna-banner';
+  src: url('A_elavtal_feb26_980x240.hyperesources/Borna-banner-Medium.woff2') format('woff2'),
+       url('A_elavtal_feb26_980x240.hyperesources/Borna-banner-Medium.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+</style>
+<script>
+(function(){
+
+  const WORDS = ["ofta", "ibland", "aldrig"];
+  const LOOP_TOTAL = 6000;
+
+  const TYPE_SPEED = 55;
+  const DELETE_SPEED = 45;
+  const GAP_AFTER_DELETE = 160;
+
+  function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  function typeWord(el, word, speed){
+    return new Promise(resolve => {
+      let i = 0;
+      el.textContent = "";
+      const t = setInterval(() => {
+        el.textContent += word.charAt(i++);
+        if (i > word.length){ clearInterval(t); resolve(); }
+      }, speed);
+    });
+  }
+
+  function deleteWord(el, speed){
+    return new Promise(resolve => {
+      const t = setInterval(() => {
+        el.textContent = el.textContent.slice(0,-1);
+        if (el.textContent.length === 0){ clearInterval(t); resolve(); }
+      }, speed);
+    });
+  }
+
+  function computeHold(){
+    // ord 1 & 2: type + delete + gap
+    let fixedTotal = 0;
+    for (let i = 0; i < WORDS.length - 1; i++){
+      const w = WORDS[i];
+      fixedTotal += w.length * TYPE_SPEED;
+      fixedTotal += w.length * DELETE_SPEED;
+      fixedTotal += GAP_AFTER_DELETE;
+    }
+    // sista ordet: bara type (ingen delete, ingen gap)
+    const last = WORDS[WORDS.length - 1];
+    fixedTotal += last.length * TYPE_SPEED;
+
+    const holdPerWord = (LOOP_TOTAL - fixedTotal) / WORDS.length;
+    return Math.max(250, Math.floor(holdPerWord));
+  }
+
+  // Start/Stop API
+  window.UETypewriter = {
+    startOnce(hypeDocument, sceneRoot){
+      const el = sceneRoot.querySelector("#tw_word");
+      if (!el) return;
+
+      // stoppa ev. tidigare körning
+      this.stop(sceneRoot);
+
+      // token för att kunna avbryta async-flödet
+      const token = Symbol("tw");
+      el.__twToken = token;
+
+      const hold = computeHold();
+
+      (async () => {
+        // Reset-läge varje gång vi startar
+        el.textContent = "";
+
+        // ord 1 & 2: type → hold → delete → gap
+        for (let i = 0; i < WORDS.length - 1; i++){
+          if (el.__twToken !== token) return;
+          await typeWord(el, WORDS[i], TYPE_SPEED);
+
+          if (el.__twToken !== token) return;
+          await wait(hold);
+
+          if (el.__twToken !== token) return;
+          await deleteWord(el, DELETE_SPEED);
+
+          if (el.__twToken !== token) return;
+          await wait(GAP_AFTER_DELETE);
+        }
+
+        // sista ordet: type → hold → stanna
+        if (el.__twToken !== token) return;
+        await typeWord(el, WORDS[WORDS.length - 1], TYPE_SPEED);
+
+        if (el.__twToken !== token) return;
+        await wait(hold);
+
+        // lämna "aldrig" synligt tills nästa restart
+      })();
+    },
+
+    stop(sceneRoot){
+      const el = sceneRoot.querySelector("#tw_word");
+      if (el) el.__twToken = null; // avbryt
+    }
+  };
+
+})();
+</script>
+
+	<!-- end copy -->
+  </head>
+  <body>
+	<!-- copy these lines to your document: -->
+
+	<div id="aelavtalfeb26980x240_hype_container" class="HYPE_document" style="margin:auto;position:relative;width:980px;height:240px;overflow:hidden;">
+		<script type="text/javascript" charset="utf-8" src="A_elavtal_feb26_980x240.hyperesources/aelavtalfeb26980x240_hype_generated_script.js?22479"></script>
+	</div>
+
+	<!-- end copy -->
+	
+
+
+	<!-- text content for search engines: -->
+
+	<div style="display:none" aria-hidden=true>
+
+		<div>för Umeåborna.
+</div>
+		<div>Tänker du på
+ditt elavtal?
+</div>
+		<div>Ofta
+Ibland
+Aldrig
+</div>
+		<div>Ibland
+</div>
+		<div></div>
+		<div>
+</div>
+		<div>Av Umeåborna,
+</div>
+		<div>Hitta ett som passar dig
+</div>
+		<div>Tänker du</div>
+		<div>Av Umeåborna, för Umeåborna.
+</div>
+		<div>på ditt elavtal?</div>
+		<div>Hitta det elavtal som passar dig
+</div>
+		<div>Tänker du på
+ditt evtal?
+</div>
+		<div>Tänker du på ditt elavtal?
+</div>
+		<div>Tänker du  på ditt elavtal?</div>
+		<div>på ditt elavtal?
+</div>
+		<div>Tänker du </div>
+
+	</div>
+
+	<!-- end text content: -->
+
+  </body>
+</html>

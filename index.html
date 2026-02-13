@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banners Elavtal "intresse" 2026</title>
+    <style>
+        /* UE Brand tokens */
+        :root {
+          --ue-color-dark: #003b3a;
+          --ue-color-light: #fbfff8;
+          --ue-color-yellow: #f6e054;
+          --ue-color-green: #43b85c;
+
+          --ue-font-primary: 'Borna', sans-serif;
+          --ue-font-weight-medium: 500;
+          --ue-font-weight-regular: 400;
+
+          --ue-radius-pill: 999px;
+          --ue-shadow-soft: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Editor UI tokens */
+        :root {
+          /* Common UI Tokens */
+          --ui-font-base: var(--ue-font-primary);
+          --ui-radius-sm: 4px;
+          --ui-radius-md: 8px;
+          --ui-radius-lg: 12px;
+          --ui-radius-pill: var(--ue-radius-pill);
+          
+          --ui-space-3xs: 0.125rem; /* 2px */
+          --ui-space-2xs: 0.25rem;  /* 4px */
+          --ui-space-xs: 0.5rem;    /* 8px */
+          --ui-space-sm: 0.75rem;   /* 12px */
+          --ui-space-md: 1rem;      /* 16px */
+          --ui-space-lg: 1.5rem;    /* 24px */
+          --ui-space-xl: 2rem;      /* 32px */
+          
+          --ui-panel-width: 300px;
+          --ui-header-height: 64px;
+          
+          --ui-transition-fast: 0.15s ease;
+          --ui-transition-base: 0.25s ease;
+        }
+
+        :root[data-theme="light"] {
+          --ui-bg-main: #f8fafc;
+          --ui-bg-panel: #ffffff;
+          --ui-bg-input: #ffffff;
+          --ui-bg-header: #ffffff;
+          --ui-bg-canvas: #f1f5f9;
+          
+          --ui-text-main: var(--ue-color-dark);
+          --ui-text-muted: #64748b;
+          --ui-text-inverse: #ffffff;
+          
+          --ui-border-base: #e2e8f0;
+          --ui-border-focus: var(--ue-color-green);
+          --ui-divider: #f1f5f9;
+          
+          --ui-accent: var(--ue-color-green);
+          --ui-accent-hover: #369a4d;
+          
+          --ui-status-success: var(--ue-color-green);
+          --ui-status-success-bg: rgba(67, 184, 92, 0.05);
+          
+          --ui-status-warning: #d97706;
+          --ui-status-warning-bg: rgba(246, 224, 84, 0.05);
+          --ui-status-warning-border: rgba(246, 224, 84, 0.2);
+          
+          --ui-status-error: #ef4444;
+          --ui-status-error-bg: rgba(239, 68, 68, 0.05);
+          --ui-status-error-border: rgba(239, 68, 68, 0.1);
+          
+          --ui-status-info: #2563eb;
+          --ui-status-info-bg: rgba(59, 130, 246, 0.05);
+          --ui-status-info-border: rgba(59, 130, 246, 0.1);
+          
+          --ui-checker-a: #e2e8f0;
+          --ui-checker-b: #ffffff;
+          
+          --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        :root[data-theme="dark"] {
+          --ui-bg-main: #002526;
+          --ui-bg-panel: #003031;
+          --ui-bg-input: rgba(255, 255, 255, 0.05);
+          --ui-bg-header: #003031;
+          --ui-bg-canvas: #001b1c;
+          
+          --ui-text-main: #f1f5f9;
+          --ui-text-muted: #94a3b8;
+          --ui-text-inverse: var(--ue-color-dark);
+          
+          --ui-border-base: rgba(255, 255, 255, 0.1);
+          --ui-border-focus: var(--ue-color-green);
+          --ui-divider: rgba(255, 255, 255, 0.05);
+          
+          --ui-accent: var(--ue-color-green);
+          --ui-accent-hover: #4fd170;
+          
+          --ui-status-success: var(--ue-color-green);
+          --ui-status-success-bg: rgba(67, 184, 92, 0.1);
+          
+          --ui-status-warning: #fbbf24;
+          --ui-status-warning-bg: rgba(251, 191, 36, 0.1);
+          --ui-status-warning-border: rgba(251, 191, 36, 0.2);
+          
+          --ui-status-error: #f87171;
+          --ui-status-error-bg: rgba(248, 113, 113, 0.1);
+          --ui-status-error-border: rgba(248, 113, 113, 0.2);
+          
+          --ui-status-info: #60a5fa;
+          --ui-status-info-bg: rgba(96, 165, 250, 0.1);
+          --ui-status-info-border: rgba(96, 165, 250, 0.2);
+          
+          --ui-checker-a: #1e293b;
+          --ui-checker-b: #0f172a;
+          
+          --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+          --ui-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Korrigera sökvägar till typsnitt */
+        @font-face {
+            font-family: 'Borna';
+            src: url('fonts/Borna-banner-Medium.woff2') format('woff2'),
+                 url('fonts/Borna-banner-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        body {
+            font-family: var(--ue-font-primary, sans-serif);
+            background-color: var(--ui-bg-main, #f8fafc);
+            color: var(--ui-text-main, #003b3a);
+            padding: 40px;
+            margin: 0;
+        }
+
+        h1 {
+            font-weight: var(--ue-font-weight-medium, 500);
+            color: var(--ue-color-dark, #003b3a);
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            align-items: center;
+            border-bottom: 1px solid var(--ui-divider, #e2e8f0);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-weight: var(--ue-font-weight-medium, 500);
+            margin: 0;
+        }
+
+        h3 {
+            font-weight: var(--ue-font-weight-regular, 400);
+            font-size: 14px;
+            color: var(--ui-text-muted, #64748b);
+            margin: 0 0 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .variant-section {
+            background: var(--ui-bg-panel, #ffffff);
+            border-radius: var(--ui-radius-lg, 12px);
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: var(--ui-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+        }
+
+        .banners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .banners-grid.invisible {
+            visibility: hidden;
+        }
+
+        .banner-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        iframe {
+            border: none;
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.03); 
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: 1px solid var(--ui-border-base, #e2e8f0);
+            border-radius: var(--ui-radius-sm, 4px);
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--ui-text-muted, #64748b);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            background: var(--ui-bg-canvas, #f1f5f9);
+            color: var(--ui-text-main, #003b3a);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Banners Elavtal "intresse" 2026</h1>
+
+    <!-- Variant A -->
+    <section class="variant-section">
+        <div class="section-header">
+            <h2>Variant A</h2>
+            <button class="toggle-btn" onclick="toggleSection(this)">Dölj</button>
+        </div>
+        <div class="banners-grid">
+            <div class="banner-wrapper">
+                <h3>980x240</h3>
+                <iframe src="A_elavtal_feb26_980x240/index.html" width="980" height="240" title="Variant A 980x240"></iframe>
+            </div>
+            <div class="banner-wrapper">
+                <h3>320x320</h3>
+                <iframe src="A_elavtal_feb26_320x320/index.html" width="320" height="320" title="Variant A 320x320"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variant B -->
+    <section class="variant-section">
+        <div class="section-header">
+            <h2>Variant B</h2>
+            <button class="toggle-btn" onclick="toggleSection(this)">Dölj</button>
+        </div>
+        <div class="banners-grid">
+            <div class="banner-wrapper">
+                <h3>980x240</h3>
+                <iframe src="B_elavtal_feb26_980x240/index.html" width="980" height="240" title="Variant B 980x240"></iframe>
+            </div>
+            <div class="banner-wrapper">
+                <h3>320x320</h3>
+                <iframe src="B_elavtal_feb26_320x320/index.html" width="320" height="320" title="Variant B 320x320"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSection(btn) {
+            // Hitta parent section
+            const section = btn.closest('.variant-section');
+            // Hitta grid inuti section
+            const grid = section.querySelector('.banners-grid');
+            
+            // Toggle invisible class
+            grid.classList.toggle('invisible');
+            
+            if (grid.classList.contains('invisible')) {
+                btn.textContent = 'Visa';
+            } else {
+                btn.textContent = 'Dölj';
+            }
+        }
+    </script>
+
+</body>
+</html>
