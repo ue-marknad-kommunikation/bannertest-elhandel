@@ -219,6 +219,24 @@
             background: var(--ui-bg-canvas, #f1f5f9);
             color: var(--ui-text-main, #003b3a);
         }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background-color: var(--ue-color-green, #43b85c);
+            color: var(--ue-color-light, #fbfff8);
+            text-decoration: none;
+            border-radius: var(--ui-radius-sm, 4px);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background-color: var(--ui-accent-hover, #369a4d);
+        }
     </style>
 </head>
 <body>
@@ -235,10 +253,12 @@
             <div class="banner-wrapper">
                 <h3>980x240</h3>
                 <iframe src="A_elavtal_feb26_980x240/index.html" width="980" height="240" title="Variant A 980x240"></iframe>
+                <a href="A_elavtal_feb26_980x240.zip" class="download-btn" download>Ladda ner zip</a>
             </div>
             <div class="banner-wrapper">
                 <h3>320x320</h3>
                 <iframe src="A_elavtal_feb26_320x320/index.html" width="320" height="320" title="Variant A 320x320"></iframe>
+                <a href="A_elavtal_feb26_320x320.zip" class="download-btn" download>Ladda ner zip</a>
             </div>
         </div>
     </section>
@@ -253,10 +273,12 @@
             <div class="banner-wrapper">
                 <h3>980x240</h3>
                 <iframe src="B_elavtal_feb26_980x240/index.html" width="980" height="240" title="Variant B 980x240"></iframe>
+                <a href="B_elavtal_feb26_980x240.zip" class="download-btn" download>Ladda ner zip</a>
             </div>
             <div class="banner-wrapper">
                 <h3>320x320</h3>
                 <iframe src="B_elavtal_feb26_320x320/index.html" width="320" height="320" title="Variant B 320x320"></iframe>
+                <a href="B_elavtal_feb26_320x320.zip" class="download-btn" download>Ladda ner zip</a>
             </div>
         </div>
     </section>
